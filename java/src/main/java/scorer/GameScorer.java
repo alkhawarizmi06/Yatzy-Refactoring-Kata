@@ -1,7 +1,7 @@
 package scorer;
 
-import model.DiceList;
+import model.DicesRoll;
 
 public interface GameScorer {
-    public int computeScore(DiceList diceList);
+    public int computeScore(DicesRoll dicesRoll);
 }

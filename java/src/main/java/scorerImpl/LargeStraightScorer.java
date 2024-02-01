@@ -4,7 +4,7 @@ import model.DicesRoll;
 import scorer.GameScorer;
 import util.GameUtil;
 
-public class YatzyScorer implements GameScorer {
+public class LargeStraightScorer implements GameScorer {
 
     @Override
     public int computeScore(DicesRoll dicesRoll) {
@@ -14,10 +14,13 @@ public class YatzyScorer implements GameScorer {
         }
 
         int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
-        for (int index = 0; index < dicesRoll.getDiceFacets(); index++)
-            if (elementsCount[index] == 5)
-                return 50;
-        return 0;
+        for (int index = 1; index < dicesRoll.getDices().length; index ++) {
+            if ( elementsCount[index] != 1) {
+                return 0;
+            }
+        }
+
+        return 20;
     }
 
 }

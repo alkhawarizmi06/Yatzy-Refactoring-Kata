@@ -2,18 +2,19 @@ package scorerImpl;
 
 import java.util.Arrays;
 
-import model.DiceList;
+import model.DicesRoll;
 import scorer.GameScorer;
 
 public class ChanceScorer implements GameScorer {
 
     @Override
-    public int computeScore(DiceList diceList) {
+    public int computeScore(DicesRoll dicesRoll) {
        
-        if (diceList == null)
+        if (dicesRoll == null) {
             throw new IllegalArgumentException("dices list should not be null");
+        }
     
-        return Arrays.stream(diceList.getDices()).sum();
+        return Arrays.stream(dicesRoll.getDices()).sum();
     }
     
 }

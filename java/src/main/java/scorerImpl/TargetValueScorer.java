@@ -2,7 +2,7 @@ package scorerImpl;
 
 import java.util.Arrays;
 
-import model.DiceList;
+import model.DicesRoll;
 import scorer.GameScorer;
 
 public class TargetValueScorer implements GameScorer {
@@ -14,11 +14,12 @@ public class TargetValueScorer implements GameScorer {
     }
 
     @Override
-    public int computeScore(DiceList diceList) {
-        if (diceList == null)
-            throw new IllegalArgumentException("Dices list should not be null");
+    public int computeScore(DicesRoll dicesRoll) {
+        if (dicesRoll == null) {
+            throw new IllegalArgumentException("dices list should not be null");
+        }
         
-        return Arrays.stream(diceList.getDices()).map(e -> e == this.targetValue ? e : 0).sum();
+        return Arrays.stream(dicesRoll.getDices()).map(e -> e == this.targetValue ? e : 0).sum();
     }
   
 } 
