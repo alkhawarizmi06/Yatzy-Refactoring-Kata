@@ -10,6 +10,11 @@ public class DicesRoll {
         this.diceFacets = diceFacets;
     }
 
+    public DicesRoll(int dices[]) {
+        this.dices = dices;
+        this.diceFacets = 6;
+    }
+
     public int[] getDices() {
         return this.dices;
     }

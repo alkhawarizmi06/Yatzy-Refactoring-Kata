@@ -11,97 +11,71 @@ import scorerImpl.YatzyScorer;
 
 public class Yatzy {
 
-    protected int[] dice;
-
-    public Yatzy(int d1, int d2, int d3, int d4, int _5) {
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
-    }
-
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int chance(DicesRoll dicesRoll) {
         GameScorer yatzyScore = new ChanceScorer();
         return yatzyScore.computeScore(dicesRoll);
     }
 
-    public static int yatzy(int... dice) {
-        DicesRoll dicesRoll = new DicesRoll(dice, 6);
+    public static int yatzy(DicesRoll dicesRoll) {
         GameScorer yatzyScore = new YatzyScorer();
         return yatzyScore.computeScore(dicesRoll);
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int ones(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 1);
     }
 
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int twos(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 2);
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int threes(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 3);
     }
 
-    public int fours() {
-        DicesRoll dicesRoll = new DicesRoll(dice, 6);
+    public static int fours(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 4);
     }
 
-    public int fives() {
-        DicesRoll dicesRoll = new DicesRoll(dice, 6);
+    public static int fives(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 5);
     }
 
-    public int sixes() {
-        DicesRoll dicesRoll = new DicesRoll(dice, 6);
+    public static int sixes(DicesRoll dicesRoll) {
         return getTargetValueScore(dicesRoll, 6);
     }
 
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int score_pair(DicesRoll dicesRoll) {
         GameScorer gameScorer = new NumberOfPairsScorer(1);
         return gameScorer.computeScore(dicesRoll);
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int two_pair(DicesRoll dicesRoll) {
         GameScorer gameScorer = new NumberOfPairsScorer(2);
         return gameScorer.computeScore(dicesRoll);
     }
 
-    public static int four_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
-        GameScorer gameScorer = new NOfKindScorer(4);
-        return gameScorer.computeScore(dicesRoll);
-    }
-
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int three_of_a_kind(DicesRoll dicesRoll) {
         GameScorer gameScorer = new NOfKindScorer(3);
         return gameScorer.computeScore(dicesRoll);
     }
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int four_of_a_kind(DicesRoll dicesRoll) {
+        GameScorer gameScorer = new NOfKindScorer(4);
+        return gameScorer.computeScore(dicesRoll);
+    }
+
+    public static int smallStraight(DicesRoll dicesRoll) {
         GameScorer gameScorer = new SmallStraightScorer();
         return gameScorer.computeScore(dicesRoll);
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int largeStraight(DicesRoll dicesRoll) {
         GameScorer gameScorer = new LargeStraightScorer();
         return gameScorer.computeScore(dicesRoll);
     }
 
-    public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
-        DicesRoll dicesRoll = new DicesRoll(new int[] { d1, d2, d3, d4, d5 }, 6);
+    public static int fullHouse(DicesRoll dicesRoll) {
         GameScorer gameScorer = new FullHouseScorer();
         return gameScorer.computeScore(dicesRoll);
     }
