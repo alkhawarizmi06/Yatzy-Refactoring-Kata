@@ -8,4 +8,12 @@ If you like this Kata, you may be interested in [my books](https://leanpub.com/u
 
 The problem that this code is designed to solve is explained here: [Yatzy](https://sammancoaching.org/kata_descriptions/yatzy.html)
 
+## Refactoring srategy 
+
+The current refactoring is guided by these following principles: 
+
+-   Make the code readable : this is done by decomposing the code into multiple self explanatory modules.
+-   Make the code easily extensible : this is done by decoupling the scoring logic from the scoring engine. To add a new scoring strategy we just have to implement the GameScorer interface and update the Enum that contains all scoring strategies. We can finish the work by writing a single unit test specific to the added scoring strategy which has zero impact on existing unit tests. 
+-   At this stage I did not include some of repetitive scoring strategies like twos, threes, etc. I have just implemented two examples ones and sixes that enherit from a generic N of kind scoring strategy. 
+
 
