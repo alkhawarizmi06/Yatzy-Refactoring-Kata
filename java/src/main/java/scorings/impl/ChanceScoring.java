@@ -5,11 +5,11 @@ import java.util.Arrays;
 import constants.YatzyConstants;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
-import scorings.GameScorer;
+import scorings.ScoringStrategy;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class ChanceScoring implements GameScorer {
+public class ChanceScoring implements ScoringStrategy {
 
     private DicesRollValidator dicesRollValidator;
 

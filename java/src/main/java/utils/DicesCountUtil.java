@@ -5,7 +5,7 @@ import models.DicesRoll;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class GameUtil {
+public class DicesCountUtil {
 
     private static DicesRollValidator dicesRollValidator = new DicesRollValidatorImpl();
 

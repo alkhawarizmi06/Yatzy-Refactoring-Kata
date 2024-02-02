@@ -2,7 +2,7 @@ package scorings;
 
 import models.DicesRoll;
 
-public interface GameScorer {
+public interface ScoringStrategy {
     public int computeScore(DicesRoll dicesRoll);
 
     public String getScoringStrategyName();

@@ -5,12 +5,12 @@ import java.util.Arrays;
 import constants.YatzyConstants;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
-import scorings.GameScorer;
-import utils.GameUtil;
+import scorings.ScoringStrategy;
+import utils.DicesCountUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class FullHouseScoring implements GameScorer {
+public class FullHouseScoring implements ScoringStrategy {
 
     private static final int FULL_DEFAULT_SCORE = 0;
     private static final int FULL_SUM = 5;
@@ -29,7 +29,7 @@ public class FullHouseScoring implements GameScorer {
             throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
         }
 
-        int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
+        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
         int[] result = Arrays.stream(elementsCount).filter(e -> e != 0).toArray();
 
         if (result.length == FULL_NUMBER && Arrays.stream(result).sum() == FULL_SUM) {

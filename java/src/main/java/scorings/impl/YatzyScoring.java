@@ -3,12 +3,12 @@ package scorings.impl;
 import constants.YatzyConstants;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
-import scorings.GameScorer;
-import utils.GameUtil;
+import scorings.ScoringStrategy;
+import utils.DicesCountUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class YatzyScoring implements GameScorer {
+public class YatzyScoring implements ScoringStrategy {
 
     private DicesRollValidator dicesRollValidator;
 
@@ -23,7 +23,7 @@ public class YatzyScoring implements GameScorer {
             throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
         }
 
-        int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
+        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
         for (int index = 0; index < dicesRoll.getDiceFacets(); index++)
             if (elementsCount[index] == 5)
                 return 50;

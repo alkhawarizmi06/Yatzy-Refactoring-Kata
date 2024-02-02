@@ -11,7 +11,7 @@ import engines.impl.YatzyScoringEngineImpl;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
 
-public class YatzyScoringEngineTest {
+class YatzyScoringEngineTest {
 
     private YatzyScoringEngine scoringEngine = new YatzyScoringEngineImpl();
 

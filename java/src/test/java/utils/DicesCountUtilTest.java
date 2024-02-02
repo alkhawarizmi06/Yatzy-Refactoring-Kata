@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import constants.YatzyConstants;
 import models.DicesRoll;
 
-public class GameUtilTest {
+class DicesCountUtilTest {
 
     @Test
     void shouldCountElementsCorrectly() {
         int [] dices = new int[] { 5, 4, 5, 3, 6 };
         DicesRoll dicesRoll = new DicesRoll(dices, 6);
-        Assertions.assertArrayEquals(GameUtil.getElementsCount(dicesRoll), new int[] { 0, 0, 1, 1, 2, 1 });
+        Assertions.assertArrayEquals(new int[] { 0, 0, 1, 1, 2, 1 }, DicesCountUtil.getElementsCount(dicesRoll));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class GameUtilTest {
         int [] dices = new int[] { 5, 4, 5, 3, 7 };
         DicesRoll dicesRoll = new DicesRoll(dices, 6);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            GameUtil.getElementsCount(dicesRoll);
+            DicesCountUtil.getElementsCount(dicesRoll);
         });
 
         String expectedMessage = YatzyConstants.INVALID_DICES_ROLL;

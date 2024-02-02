@@ -7,12 +7,12 @@ public class DicesRoll {
     private int[] dices;
     private int diceFacets;
 
-    public DicesRoll(int dices[], int diceFacets) {
+    public DicesRoll(int[] dices, int diceFacets) {
         this.dices = dices;
         this.diceFacets = diceFacets;
     }
 
-    public DicesRoll(int dices[]) {
+    public DicesRoll(int[] dices) {
         this.dices = dices;
         this.diceFacets = YatzyConstants.DEFAULT_FACETS;
     }
