@@ -1,36 +1,25 @@
 package scorings.impl;
 
-import constants.YatzyConstants;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
 import scorings.ScoringStrategy;
 import utils.DicesCountUtil;
-import validators.DicesRollValidator;
-import validators.DicesRollValidatorImpl;
+import utils.DicesRollValidatorUtil;
 
 public class LargeStraightScoring implements ScoringStrategy {
 
-    private DicesRollValidator dicesRollValidator;
-
-    public LargeStraightScoring () {
-        this.dicesRollValidator = new DicesRollValidatorImpl();
-    }
+    private static final int LARGE_STRAIGHT_SCORE = 20;
 
     @Override
     public int computeScore(DicesRoll dicesRoll) {
-
-         if (!this.dicesRollValidator.isDicesRollValid(dicesRoll)) {
-            throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
-        }
+        validateDicesRoll(dicesRoll);
 
         int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
-        for (int index = 1; index < dicesRoll.getDices().length; index ++) {
-            if ( elementsCount[index] != 1) {
-                return 0;
-            }
+        if (isLargeStraight(elementsCount, dicesRoll.getDices().length)) {
+            return LARGE_STRAIGHT_SCORE;
         }
 
-        return 20;
+        return 0;
     }
 
     @Override
@@ -38,4 +27,16 @@ public class LargeStraightScoring implements ScoringStrategy {
         return ScoringStrategyEnum.LARGE_STRAIGHT_SCORING_STRATEGY.getScoringStrategyName();
     }
 
+    private void validateDicesRoll(DicesRoll dicesRoll) {
+        DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
+    }
+
+    private boolean isLargeStraight(int[] elementsCount, int dices) {
+        for (int index = 1; index < dices; index++) {
+            if (elementsCount[index] != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

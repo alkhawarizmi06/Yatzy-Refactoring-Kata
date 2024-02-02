@@ -12,24 +12,31 @@ import scorings.ScoringStrategy;
 public class YatzyScoringStrategyLoaderUtil {
 
     public static Set<ScoringStrategy> loadScoringStrategies(String packageName) {
-        InputStream stream = ClassLoader.getSystemClassLoader()
-                .getResourceAsStream(packageName.replaceAll("[.]", "/"));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        return reader.lines()
-                .filter(line -> line.endsWith(".class"))
-                .map(line -> getClass(line, packageName)
-                )
-                .collect(Collectors.toSet());
+        try {
+            InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream(packageToPath(packageName));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+
+            return reader.lines()
+                    .filter(line -> line.endsWith(".class"))
+                    .map(line -> loadScoringStrategyClass(line, packageName))
+                    .collect(Collectors.toSet());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load scoring strategies.", e);
+        }
     }
 
-    private static ScoringStrategy getClass(String className, String packageName) {
+    private static String packageToPath(String packageName) {
+        return packageName.replaceAll("[.]", "/");
+    }
+
+    private static ScoringStrategy loadScoringStrategyClass(String className, String packageName) {
         try {
-            return (ScoringStrategy) Class.forName(packageName + "."
-                    + className.substring(0, className.lastIndexOf('.'))).getDeclaredConstructor().newInstance();
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-            // handle the exception
+            String fullClassName = packageName + "." + className.substring(0, className.lastIndexOf('.'));
+            Class<?> scoringStrategyClass = Class.forName(fullClassName);
+            return (ScoringStrategy) scoringStrategyClass.getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+            throw new RuntimeException("Failed to load scoring strategy class: " + className, e);
         }
-        return null;
     }
 }

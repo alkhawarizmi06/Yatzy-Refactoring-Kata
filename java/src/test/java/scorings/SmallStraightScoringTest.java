@@ -10,7 +10,7 @@ import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.impl.SmallStraightScoring;
 
-public class SmallStraightScoringTest {
+class SmallStraightScoringTest {
 
     private SmallStraightScoring smallStraightScoring = new SmallStraightScoring();
 

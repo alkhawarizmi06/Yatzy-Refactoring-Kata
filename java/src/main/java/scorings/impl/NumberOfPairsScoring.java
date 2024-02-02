@@ -1,35 +1,34 @@
 package scorings.impl;
 
-import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.ScoringStrategy;
 import utils.DicesCountUtil;
-import validators.DicesRollValidator;
-import validators.DicesRollValidatorImpl;
+import utils.DicesRollValidatorUtil;
 
 public class NumberOfPairsScoring implements ScoringStrategy {
 
     protected int numberOfPairsTarget;
-    private DicesRollValidator dicesRollValidator;
 
-    public NumberOfPairsScoring () {
-         this.dicesRollValidator = new DicesRollValidatorImpl();
+    public NumberOfPairsScoring(int numberOfPairsTarget) {
+        this.numberOfPairsTarget = numberOfPairsTarget;
+    }
+
+    public NumberOfPairsScoring() {
+        this.numberOfPairsTarget = 1;
     }
 
     @Override
     public int computeScore(DicesRoll dicesRoll) {
-
-         if (!this.dicesRollValidator.isDicesRollValid(dicesRoll)) {
-            throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
-        }
+        validateDicesRoll(dicesRoll);
 
         int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
         int numberOfPairs = 0;
         int currentScore = 0;
-        for (int index = elementsCount.length - 1; index >= 0; index--) {
-            if (elementsCount[index] >= 2 && numberOfPairs < this.numberOfPairsTarget) {
+
+        for (int index = elementsCount.length - 1; index >= 0 && numberOfPairs < this.numberOfPairsTarget; index--) {
+            if (elementsCount[index] >= 2) {
                 numberOfPairs++;
-                currentScore += index + 1;
+                currentScore += (index + 1);
             }
         }
 
@@ -41,4 +40,8 @@ public class NumberOfPairsScoring implements ScoringStrategy {
         return "DEFAULT";
     }
 
+    private void validateDicesRoll(DicesRoll dicesRoll) {
+        DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
+    }
 }
+

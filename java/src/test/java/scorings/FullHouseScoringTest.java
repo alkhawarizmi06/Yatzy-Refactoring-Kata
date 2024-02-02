@@ -10,7 +10,7 @@ import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.impl.FullHouseScoring;
 
-public class FullHouseScoringTest {
+class FullHouseScoringTest {
 
     private FullHouseScoring fullHouseScoring  = new FullHouseScoring();
 

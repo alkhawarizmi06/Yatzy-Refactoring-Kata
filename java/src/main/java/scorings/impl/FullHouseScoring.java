@@ -2,13 +2,11 @@ package scorings.impl;
 
 import java.util.Arrays;
 
-import constants.YatzyConstants;
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
 import scorings.ScoringStrategy;
 import utils.DicesCountUtil;
-import validators.DicesRollValidator;
-import validators.DicesRollValidatorImpl;
+import utils.DicesRollValidatorUtil;
 
 public class FullHouseScoring implements ScoringStrategy {
 
@@ -16,23 +14,15 @@ public class FullHouseScoring implements ScoringStrategy {
     private static final int FULL_SUM = 5;
     private static final int FULL_NUMBER = 2;
 
-    private DicesRollValidator dicesRollValidator;
-
-    public FullHouseScoring () {
-         this.dicesRollValidator = new DicesRollValidatorImpl();
-    }
-
     @Override
     public int computeScore(DicesRoll dicesRoll) {
 
-         if (!this.dicesRollValidator.isDicesRollValid(dicesRoll)) {
-            throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
-        }
+        DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
 
         int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
         int[] result = Arrays.stream(elementsCount).filter(e -> e != 0).toArray();
 
-        if (result.length == FULL_NUMBER && Arrays.stream(result).sum() == FULL_SUM) {
+        if (isFullHouse(result)) {
             return Arrays.stream(dicesRoll.getDices()).sum();
         }
 
@@ -44,4 +34,7 @@ public class FullHouseScoring implements ScoringStrategy {
         return ScoringStrategyEnum.FULL_HOUSE_SCORING_STRATEGY.getScoringStrategyName();
     }
 
+    private boolean isFullHouse(int[] result) {
+        return result.length == FULL_NUMBER && Arrays.stream(result).sum() == FULL_SUM;
+    }
 }

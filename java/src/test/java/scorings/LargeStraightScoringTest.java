@@ -10,7 +10,7 @@ import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.impl.LargeStraightScoring;
 
-public class LargeStraightScoringTest {
+class LargeStraightScoringTest {
 
     private LargeStraightScoring largeStraightScoring = new LargeStraightScoring();
 

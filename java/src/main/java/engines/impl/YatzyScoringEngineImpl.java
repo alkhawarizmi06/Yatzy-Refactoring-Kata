@@ -23,7 +23,7 @@ public class YatzyScoringEngineImpl implements YatzyScoringEngine {
                 .filter(scoringStrategy -> scoringStrategy != null
                         && scoringStrategy.getScoringStrategyName().equals(scoringStrategyName))
                 .collect(Collectors.toList());
-        if (currentScoringStrategies.size() == 0) {
+        if (currentScoringStrategies.isEmpty()) {
             throw new IllegalArgumentException(YatzyConstants.UNKNOWN_SCORING_STRATEGY);
         }
         ScoringStrategy scoringStrategy = currentScoringStrategies.get(0);

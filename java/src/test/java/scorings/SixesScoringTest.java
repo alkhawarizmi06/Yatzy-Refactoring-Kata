@@ -10,7 +10,7 @@ import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.impl.SixesScoring;
 
-public class SixesScoringTest {
+class SixesScoringTest {
 
     private SixesScoring sixesScoring = new SixesScoring();
 

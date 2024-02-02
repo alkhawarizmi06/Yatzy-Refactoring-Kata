@@ -10,7 +10,7 @@ import constants.YatzyConstants;
 import models.DicesRoll;
 import scorings.impl.ThreeOfKindScoring;
 
-public class ThreeOfKindScoringTest {
+class ThreeOfKindScoringTest {
 
     private ThreeOfKindScoring threeOfKindScoring = new ThreeOfKindScoring();
 
