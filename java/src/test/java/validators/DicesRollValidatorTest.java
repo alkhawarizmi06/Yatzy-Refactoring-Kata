@@ -3,7 +3,7 @@ package validators;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import model.DicesRoll;
+import models.DicesRoll;
 
 public class DicesRollValidatorTest {
 

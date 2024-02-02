@@ -2,7 +2,7 @@ package validators;
 
 import java.util.Arrays;
 
-import model.DicesRoll;
+import models.DicesRoll;
 
 public class DicesRollValidatorImpl implements DicesRollValidator {
 

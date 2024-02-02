@@ -8,3 +8,4 @@ If you like this Kata, you may be interested in [my books](https://leanpub.com/u
 
 The problem that this code is designed to solve is explained here: [Yatzy](https://sammancoaching.org/kata_descriptions/yatzy.html)
 
+
