@@ -2,9 +2,13 @@ package scorerImpl;
 
 import java.util.Arrays;
 
+import constants.ScoringStrategyEnum;
+import constants.YatzyConstants;
 import model.DicesRoll;
 import scorer.GameScorer;
 import util.GameUtil;
+import validators.DicesRollValidator;
+import validators.DicesRollValidatorImpl;
 
 public class FullHouseScorer implements GameScorer {
 
@@ -12,11 +16,17 @@ public class FullHouseScorer implements GameScorer {
     private static final int FULL_SUM = 5;
     private static final int FULL_NUMBER = 2;
 
+    private DicesRollValidator dicesRollValidator;
+
+    public FullHouseScorer () {
+         this.dicesRollValidator = new DicesRollValidatorImpl();
+    }
+
     @Override
     public int computeScore(DicesRoll dicesRoll) {
 
-        if (dicesRoll == null) {
-            throw new IllegalArgumentException("dices list should not be null");
+         if (!this.dicesRollValidator.isDicesRollValid(dicesRoll)) {
+            throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
         }
 
         int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
@@ -27,6 +37,11 @@ public class FullHouseScorer implements GameScorer {
         }
 
         return FULL_DEFAULT_SCORE;
+    }
+
+    @Override
+    public String getScoringStrategyName() {
+        return ScoringStrategyEnum.FULL_HOUSE_SCORING_STRATEGY.getScoringStrategyName();
     }
 
 }

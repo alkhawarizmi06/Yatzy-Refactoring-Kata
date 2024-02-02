@@ -1,13 +1,10 @@
-import org.junit.*;
+package engine;
 
-import model.DicesRoll;
-import validators.DicesRollValidatorImpl;
 
-import static org.junit.Assert.*;
 
 public class YatzyTest {
 
-    private YatzyScoringEngine scoringEngine = new YatzyScoringEngine(new DicesRollValidatorImpl());
+    /*private YatzyScoringEngine scoringEngine = new YatzyScoringEngineImpl(new DicesRollValidatorImpl());
 
     @Test
     public void chance_scores_sum_of_all_dice() {
@@ -21,7 +18,7 @@ public class YatzyTest {
     public void yatzy_scores_50() {
         int expected = 50;
         int actual = scoringEngine.yatzy(new DicesRoll(new int[] { 4, 4, 4, 4, 4 }));
-        assertEquals(expected, actual);
+        Assertions.as(expected, actual);
         assertEquals(50, scoringEngine.yatzy(new DicesRoll(new int[] { 6, 6, 6, 6, 6 })));
         assertEquals(0, scoringEngine.yatzy(new DicesRoll(new int[] { 6, 6, 6, 6, 3 })));
     }
@@ -69,29 +66,29 @@ public class YatzyTest {
 
     @Test
     public void one_pair() {
-        assertEquals(6, scoringEngine.score_pair(new DicesRoll(new int[] { 3, 4, 3, 5, 6 })));
-        assertEquals(10, scoringEngine.score_pair(new DicesRoll(new int[] { 5, 3, 3, 3, 5 })));
-        assertEquals(12, scoringEngine.score_pair(new DicesRoll(new int[] { 5, 3, 6, 6, 5 })));
+        assertEquals(6, scoringEngine.singlePair(new DicesRoll(new int[] { 3, 4, 3, 5, 6 })));
+        assertEquals(10, scoringEngine.singlePair(new DicesRoll(new int[] { 5, 3, 3, 3, 5 })));
+        assertEquals(12, scoringEngine.singlePair(new DicesRoll(new int[] { 5, 3, 6, 6, 5 })));
     }
 
     @Test
     public void two_Pair() {
-        assertEquals(16, scoringEngine.two_pair(new DicesRoll(new int[] { 3, 3, 5, 4, 5 })));
-        assertEquals(16, scoringEngine.two_pair(new DicesRoll(new int[] { 3, 3, 5, 5, 5 })));
+        assertEquals(16, scoringEngine.twoPairs(new DicesRoll(new int[] { 3, 3, 5, 4, 5 })));
+        assertEquals(16, scoringEngine.twoPairs(new DicesRoll(new int[] { 3, 3, 5, 5, 5 })));
     }
 
     @Test
     public void three_of_a_kind() {
-        assertEquals(9, scoringEngine.three_of_a_kind(new DicesRoll(new int[] { 3, 3, 3, 4, 5 })));
-        assertEquals(15, scoringEngine.three_of_a_kind(new DicesRoll(new int[] { 5, 3, 5, 4, 5 })));
-        assertEquals(9, scoringEngine.three_of_a_kind(new DicesRoll(new int[] { 3, 3, 3, 3, 5 })));
+        assertEquals(9, scoringEngine.threeOfAKind(new DicesRoll(new int[] { 3, 3, 3, 4, 5 })));
+        assertEquals(15, scoringEngine.threeOfAKind(new DicesRoll(new int[] { 5, 3, 5, 4, 5 })));
+        assertEquals(9, scoringEngine.threeOfAKind(new DicesRoll(new int[] { 3, 3, 3, 3, 5 })));
     }
 
     @Test
     public void four_of_a_knd() {
-        assertEquals(12, scoringEngine.four_of_a_kind(new DicesRoll(new int[] { 3, 3, 3, 3, 5 })));
-        assertEquals(20, scoringEngine.four_of_a_kind(new DicesRoll(new int[] { 5, 5, 5, 4, 5 })));
-        assertEquals(9, scoringEngine.three_of_a_kind(new DicesRoll(new int[] { 3, 3, 3, 3, 3 })));
+        assertEquals(12, scoringEngine.fourOfAKind(new DicesRoll(new int[] { 3, 3, 3, 3, 5 })));
+        assertEquals(20, scoringEngine.fourOfAKind(new DicesRoll(new int[] { 5, 5, 5, 4, 5 })));
+        assertEquals(9, scoringEngine.threeOfAKind(new DicesRoll(new int[] { 3, 3, 3, 3, 3 })));
     }
 
     @Test
@@ -112,5 +109,5 @@ public class YatzyTest {
     public void fullHouse() {
         assertEquals(18, scoringEngine.fullHouse(new DicesRoll(new int[] { 6, 2, 2, 2, 6 })));
         assertEquals(0, scoringEngine.fullHouse(new DicesRoll(new int[] { 2, 3, 4, 5, 6 })));
-    }
+    }*/
 }

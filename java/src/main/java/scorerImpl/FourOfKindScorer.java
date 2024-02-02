@@ -8,12 +8,12 @@ import util.GameUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class SmallStraightScorer implements GameScorer {
+public class FourOfKindScorer implements GameScorer {
 
     private DicesRollValidator dicesRollValidator;
 
-    public SmallStraightScorer () {
-         this.dicesRollValidator = new DicesRollValidatorImpl();
+    public FourOfKindScorer() {
+        this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 
     @Override
@@ -24,18 +24,15 @@ public class SmallStraightScorer implements GameScorer {
         }
 
         int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
-        for (int index = 0; index < dicesRoll.getDices().length; index++) {
-            if (elementsCount[index] != 1) {
-                return 0;
-            }
-        }
-
-        return 15;
+        for (int index = 0; index < dicesRoll.getDiceFacets(); index++)
+            if (elementsCount[index] >= 4)
+                return (index + 1) * 4;
+        return 0;
     }
 
     @Override
     public String getScoringStrategyName() {
-        return ScoringStrategyEnum.SMALL_STRAIGHT_SCORING_STRATEGY.getScoringStrategyName();
+        return ScoringStrategyEnum.FOUR_OF_KIND_SCORING_STRATEGY.getScoringStrategyName();
     }
 
 }

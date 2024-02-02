@@ -1,5 +1,7 @@
 package model;
 
+import constants.YatzyConstants;
+
 public class DicesRoll {
 
     private int[] dices;
@@ -12,7 +14,7 @@ public class DicesRoll {
 
     public DicesRoll(int dices[]) {
         this.dices = dices;
-        this.diceFacets = 6;
+        this.diceFacets = YatzyConstants.DEFAULT_FACETS;
     }
 
     public int[] getDices() {
