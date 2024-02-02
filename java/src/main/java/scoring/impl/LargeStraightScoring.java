@@ -1,20 +1,18 @@
-package scorerImpl;
+package scoring.impl;
 
-import java.util.Arrays;
-
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
+import enums.ScoringStrategyEnum;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
+import util.GameUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class TargetValueScorer implements GameScorer {
+public class LargeStraightScoring implements GameScorer {
 
-    private int targetValue = 1;
     private DicesRollValidator dicesRollValidator;
 
-    public TargetValueScorer () {
+    public LargeStraightScoring () {
         this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 
@@ -24,13 +22,20 @@ public class TargetValueScorer implements GameScorer {
          if (!this.dicesRollValidator.isDicesRollValid(dicesRoll)) {
             throw new IllegalArgumentException(YatzyConstants.INVALID_DICES_ROLL);
         }
-        
-        return Arrays.stream(dicesRoll.getDices()).map(e -> e == this.targetValue ? e : 0).sum();
+
+        int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
+        for (int index = 1; index < dicesRoll.getDices().length; index ++) {
+            if ( elementsCount[index] != 1) {
+                return 0;
+            }
+        }
+
+        return 20;
     }
 
     @Override
     public String getScoringStrategyName() {
-        return ScoringStrategyEnum.ONES_SCORING_STRATEGY.getScoringStrategyName();
+        return ScoringStrategyEnum.LARGE_STRAIGHT_SCORING_STRATEGY.getScoringStrategyName();
     }
-  
-} 
+
+}

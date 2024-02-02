@@ -1,24 +1,19 @@
-package scorerImpl;
+package scoring.impl;
 
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
 import util.GameUtil;
 import validators.DicesRollValidator;
+import validators.DicesRollValidatorImpl;
 
-public class NumberOfPairsScorer implements GameScorer {
+public class NumberOfPairsScoring implements GameScorer {
 
-    private int numberOfPairsTarget = 1;
+    protected int numberOfPairsTarget;
     private DicesRollValidator dicesRollValidator;
 
-    public NumberOfPairsScorer (DicesRollValidator dicesRollValidator) {
-        this.dicesRollValidator = dicesRollValidator;
-    }
-
-    public NumberOfPairsScorer(DicesRollValidator dicesRollValidator, int numberOfPairsTarget) {
-        this.numberOfPairsTarget = numberOfPairsTarget;
-        this.dicesRollValidator = dicesRollValidator;
+    public NumberOfPairsScoring () {
+         this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 
     @Override
@@ -43,7 +38,7 @@ public class NumberOfPairsScorer implements GameScorer {
 
     @Override
     public String getScoringStrategyName() {
-        return ScoringStrategyEnum.SINGLE_PAIR_SCORING_STRATEGY.getScoringStrategyName();
+        return "DEFAULT";
     }
 
 }

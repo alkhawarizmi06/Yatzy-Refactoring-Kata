@@ -1,18 +1,18 @@
-package scorerImpl;
+package scoring.impl;
 
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
 import util.GameUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class LargeStraightScorer implements GameScorer {
+public class NOfKindScoring implements GameScorer {
 
     private DicesRollValidator dicesRollValidator;
+    protected int targetValue;
 
-    public LargeStraightScorer () {
+    public NOfKindScoring() {
         this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 
@@ -24,18 +24,15 @@ public class LargeStraightScorer implements GameScorer {
         }
 
         int[] elementsCount = GameUtil.getElementsCount(dicesRoll);
-        for (int index = 1; index < dicesRoll.getDices().length; index ++) {
-            if ( elementsCount[index] != 1) {
-                return 0;
-            }
-        }
-
-        return 20;
+        for (int index = 0; index < dicesRoll.getDiceFacets(); index++)
+            if (elementsCount[index] >= this.targetValue)
+                return (index + 1) * this.targetValue;
+        return 0;
     }
 
     @Override
     public String getScoringStrategyName() {
-        return ScoringStrategyEnum.LARGE_STRAIGHT_SCORING_STRATEGY.getScoringStrategyName();
+        return "DEFAULT";
     }
 
 }

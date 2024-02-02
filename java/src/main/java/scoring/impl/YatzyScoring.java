@@ -1,18 +1,18 @@
-package scorerImpl;
+package scoring.impl;
 
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
+import enums.ScoringStrategyEnum;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
 import util.GameUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class YatzyScorer implements GameScorer {
+public class YatzyScoring implements GameScorer {
 
     private DicesRollValidator dicesRollValidator;
 
-    public YatzyScorer() {
+    public YatzyScoring() {
         this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 

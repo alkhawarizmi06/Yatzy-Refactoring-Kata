@@ -1,4 +1,4 @@
-package scorer;
+package scoring;
 
 import model.DicesRoll;
 

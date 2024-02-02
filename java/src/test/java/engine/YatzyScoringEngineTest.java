@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
+import enums.ScoringStrategyEnum;
 import model.DicesRoll;
 
-public class YatzyTest2 {
+public class YatzyScoringEngineTest {
 
     private YatzyScoringEngine scoringEngine = new YatzyScoringEngineImpl();
 
@@ -26,7 +26,7 @@ public class YatzyTest2 {
     @Test
     void shouldReturnTheRightNumberOfAvailableScoringStrategies() {
         int actual = scoringEngine.getScoringStrategiesCount();
-        Assertions.assertEquals(8, actual);
+        Assertions.assertEquals(14, actual);
     }
 
     @Test

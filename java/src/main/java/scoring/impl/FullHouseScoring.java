@@ -1,16 +1,16 @@
-package scorerImpl;
+package scoring.impl;
 
 import java.util.Arrays;
 
-import constants.ScoringStrategyEnum;
 import constants.YatzyConstants;
+import enums.ScoringStrategyEnum;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
 import util.GameUtil;
 import validators.DicesRollValidator;
 import validators.DicesRollValidatorImpl;
 
-public class FullHouseScorer implements GameScorer {
+public class FullHouseScoring implements GameScorer {
 
     private static final int FULL_DEFAULT_SCORE = 0;
     private static final int FULL_SUM = 5;
@@ -18,7 +18,7 @@ public class FullHouseScorer implements GameScorer {
 
     private DicesRollValidator dicesRollValidator;
 
-    public FullHouseScorer () {
+    public FullHouseScoring () {
          this.dicesRollValidator = new DicesRollValidatorImpl();
     }
 

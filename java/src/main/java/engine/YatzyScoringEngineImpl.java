@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 import constants.YatzyConstants;
 import model.DicesRoll;
-import scorer.GameScorer;
+import scoring.GameScorer;
 
 public class YatzyScoringEngineImpl implements YatzyScoringEngine {
 
     private Set<Object> socoringStrategies;
 
     public YatzyScoringEngineImpl() {
-        this.socoringStrategies = YatzyScoringStrategyLoader.findAllClassesUsingClassLoader("scorerImpl");
+        this.socoringStrategies = YatzyScoringStrategyLoader.loadScoringStrategies("scoring.impl");
     }
 
     public int computeScore(String scoringStrategyName, DicesRoll dicesRoll) {
