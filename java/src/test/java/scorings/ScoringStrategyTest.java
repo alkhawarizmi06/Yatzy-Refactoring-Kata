@@ -3,14 +3,17 @@ package scorings;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import constants.YatzyConstants;
 import models.DicesRoll;
+import scorings.impl.ChanceScoring;
 
+@Disabled
 class ScoringStrategyTest {
 
-    protected ScoringStrategy scoringStrategy;
+    protected ScoringStrategy scoringStrategy = new ChanceScoring();
 
     protected ScoringStrategyTest(ScoringStrategy scoringStrategy) {
         this.scoringStrategy = scoringStrategy;

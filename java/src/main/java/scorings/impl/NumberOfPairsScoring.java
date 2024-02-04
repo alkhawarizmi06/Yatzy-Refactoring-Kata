@@ -21,12 +21,12 @@ public class NumberOfPairsScoring implements ScoringStrategy {
     public int computeScore(DicesRoll dicesRoll) {
         validateDicesRoll(dicesRoll);
 
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
+        int[] dicesValueCount = DicesCountUtil.getDicesValueCount(dicesRoll);
         int numberOfPairs = 0;
         int currentScore = 0;
 
-        for (int index = elementsCount.length - 1; index >= 0 && numberOfPairs < this.numberOfPairsTarget; index--) {
-            if (elementsCount[index] >= 2) {
+        for (int index = dicesValueCount.length - 1; index >= 0 && numberOfPairs < this.numberOfPairsTarget; index--) {
+            if (dicesValueCount[index] >= 2) {
                 numberOfPairs++;
                 currentScore += (index + 1);
             }

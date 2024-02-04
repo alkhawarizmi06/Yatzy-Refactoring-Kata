@@ -24,7 +24,7 @@ public class TargetValueScoring implements ScoringStrategy {
         validateDicesRoll(dicesRoll);
 
         return Arrays.stream(dicesRoll.getDices())
-                .map(e -> e == this.targetValue ? e : 0)
+                .map(dice -> dice == this.targetValue ? dice : 0)
                 .sum();
     }
 

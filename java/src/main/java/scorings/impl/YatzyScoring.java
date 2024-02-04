@@ -1,9 +1,10 @@
 package scorings.impl;
 
+import java.util.Arrays;
+
 import enums.ScoringStrategyEnum;
 import models.DicesRoll;
 import scorings.ScoringStrategy;
-import utils.DicesCountUtil;
 import utils.DicesRollValidatorUtil;
 
 public class YatzyScoring implements ScoringStrategy {
@@ -13,13 +14,10 @@ public class YatzyScoring implements ScoringStrategy {
     @Override
     public int computeScore(DicesRoll dicesRoll) {
         validateDicesRoll(dicesRoll);
-
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
-        for (int count : elementsCount) {
-            if (count == dicesRoll.getDices().length) {
-                return YATZY_SCORE;
-            }
+        if (this.isYatzy(dicesRoll)) {
+            return YATZY_SCORE;
         }
+
         return 0;
     }
 
@@ -28,8 +26,12 @@ public class YatzyScoring implements ScoringStrategy {
         return ScoringStrategyEnum.YATZY_SCORING_STRATEGY.getScoringStrategyName();
     }
 
+    private boolean isYatzy(DicesRoll dicesRoll) {
+        int firstDie = dicesRoll.getDices()[0];
+        return Arrays.stream(dicesRoll.getDices()).allMatch(value -> value == firstDie);
+    }
+
     private void validateDicesRoll(DicesRoll dicesRoll) {
         DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
     }
 }
-

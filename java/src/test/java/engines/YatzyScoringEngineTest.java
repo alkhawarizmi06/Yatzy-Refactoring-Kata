@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import constants.YatzyConstants;
 import engines.impl.YatzyScoringEngineImpl;
 import enums.ScoringStrategyEnum;
+import exceptions.UnknownScoringStrategyException;
 import models.DicesRoll;
 
 class YatzyScoringEngineTest {
@@ -16,7 +17,7 @@ class YatzyScoringEngineTest {
     private YatzyScoringEngine scoringEngine = new YatzyScoringEngineImpl();
 
     @Test
-    void shouldReturnCorrectScoreForChanceScoringStrategy() {
+    void shouldReturnCorrectScoreForChanceScoringStrategy() throws UnknownScoringStrategyException {
         int[] dices = new int[] { 5, 4, 5, 3, 6 };
         DicesRoll dicesRoll = new DicesRoll(dices, 6);
         String scoringStrategyName = ScoringStrategyEnum.CHANCE_SCORING_STRATEGY.getScoringStrategyName();
@@ -34,7 +35,7 @@ class YatzyScoringEngineTest {
     void shouldThrowExceptionIfScoringStrategyDoesNotExists() {
         int [] dices = new int[] { 5, 4, 5, 3, 7 };
         DicesRoll dicesRoll = new DicesRoll(dices, 6);
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(UnknownScoringStrategyException.class, () -> {
             scoringEngine.computeScore("UNKNOWN", dicesRoll);
         });
 

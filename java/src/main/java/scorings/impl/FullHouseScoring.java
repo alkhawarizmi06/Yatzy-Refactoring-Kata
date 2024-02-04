@@ -19,10 +19,7 @@ public class FullHouseScoring implements ScoringStrategy {
 
         DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
 
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
-        int[] result = Arrays.stream(elementsCount).filter(e -> e != 0).toArray();
-
-        if (isFullHouse(result)) {
+        if (isFullHouse(dicesRoll)) {
             return Arrays.stream(dicesRoll.getDices()).sum();
         }
 
@@ -34,7 +31,9 @@ public class FullHouseScoring implements ScoringStrategy {
         return ScoringStrategyEnum.FULL_HOUSE_SCORING_STRATEGY.getScoringStrategyName();
     }
 
-    private boolean isFullHouse(int[] result) {
-        return result.length == FULL_NUMBER && Arrays.stream(result).sum() == FULL_SUM;
+    private boolean isFullHouse(DicesRoll dicesRoll) {
+        int[] dicesValueCount = DicesCountUtil.getDicesValueCount(dicesRoll);
+        int[] filteredDices = Arrays.stream(dicesValueCount).filter(dice -> dice != 0).toArray();
+        return filteredDices.length == FULL_NUMBER && Arrays.stream(filteredDices).sum() == FULL_SUM;
     }
 }

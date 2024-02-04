@@ -21,9 +21,9 @@ public class NOfKindScoring implements ScoringStrategy {
     public int computeScore(DicesRoll dicesRoll) {
         validateDicesRoll(dicesRoll);
 
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
+        int[] dicesValueCount = DicesCountUtil.getDicesValueCount(dicesRoll);
         for (int index = 0; index < dicesRoll.getDiceFacets(); index++) {
-            if (elementsCount[index] >= this.targetValue) {
+            if (dicesValueCount[index] >= this.targetValue) {
                 return (index + 1) * this.targetValue;
             }
         }

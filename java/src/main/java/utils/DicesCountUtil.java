@@ -4,18 +4,18 @@ import models.DicesRoll;
 
 public class DicesCountUtil {
 
-    public static int[] getElementsCount(DicesRoll dicesRoll) {
+    public static int[] getDicesValueCount(DicesRoll dicesRoll) {
         DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
 
-        return countElements(dicesRoll);
+        return countDiceValues(dicesRoll);
 
     }
 
-    private static int[] countElements(DicesRoll dicesRoll) {
-        int[] elementsCount = new int[dicesRoll.getDiceFacets()];
+    private static int[] countDiceValues(DicesRoll dicesRoll) {
+        int[] dicesValueCount = new int[dicesRoll.getDiceFacets()];
         for (int element : dicesRoll.getDices()) {
-            elementsCount[element - 1] += 1;
+            dicesValueCount[element - 1] += 1;
         }
-        return elementsCount;
+        return dicesValueCount;
     }
 }

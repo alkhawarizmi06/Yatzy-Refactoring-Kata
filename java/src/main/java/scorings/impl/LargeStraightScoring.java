@@ -14,8 +14,8 @@ public class LargeStraightScoring implements ScoringStrategy {
     public int computeScore(DicesRoll dicesRoll) {
         validateDicesRoll(dicesRoll);
 
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
-        if (isLargeStraight(elementsCount, dicesRoll.getDices().length)) {
+        int[] dicesValueCount = DicesCountUtil.getDicesValueCount(dicesRoll);
+        if (isLargeStraight(dicesValueCount, dicesRoll.getDices().length)) {
             return LARGE_STRAIGHT_SCORE;
         }
 
@@ -31,9 +31,9 @@ public class LargeStraightScoring implements ScoringStrategy {
         DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
     }
 
-    private boolean isLargeStraight(int[] elementsCount, int dices) {
+    private boolean isLargeStraight(int[] dicesValueCount, int dices) {
         for (int index = 1; index < dices; index++) {
-            if (elementsCount[index] != 1) {
+            if (dicesValueCount[index] != 1) {
                 return false;
             }
         }

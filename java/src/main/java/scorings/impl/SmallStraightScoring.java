@@ -14,8 +14,8 @@ public class SmallStraightScoring implements ScoringStrategy {
     public int computeScore(DicesRoll dicesRoll) {
         validateDicesRoll(dicesRoll);
 
-        int[] elementsCount = DicesCountUtil.getElementsCount(dicesRoll);
-        if (isSmallStraight(elementsCount, dicesRoll.getDices().length)) {
+        int[] dicesValueCount = DicesCountUtil.getDicesValueCount(dicesRoll);
+        if (isSmallStraight(dicesValueCount, dicesRoll.getDices().length)) {
             return SMALL_STRAIGHT_SCORE;
         }
 
@@ -31,9 +31,9 @@ public class SmallStraightScoring implements ScoringStrategy {
         DicesRollValidatorUtil.validateDicesRoll(dicesRoll);
     }
 
-    private boolean isSmallStraight(int[] elementsCount, int dices) {
+    private boolean isSmallStraight(int[] dicesValueCount, int dices) {
         for (int index = 0; index < dices; index++) {
-            if (elementsCount[index] != 1) {
+            if (dicesValueCount[index] != 1) {
                 return false;
             }
         }
