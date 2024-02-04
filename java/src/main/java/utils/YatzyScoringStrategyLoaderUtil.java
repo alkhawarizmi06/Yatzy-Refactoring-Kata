@@ -12,7 +12,7 @@ import scorings.ScoringStrategy;
 
 public class YatzyScoringStrategyLoaderUtil {
 
-    public static Set<ScoringStrategy> loadScoringStrategies(String packageName) throws ScoringStrategyLoadingException {
+    public static Set<ScoringStrategy> loadScoringStrategies(String packageName) {
 
         InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream(packageToPath(packageName));
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
